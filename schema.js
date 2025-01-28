@@ -39,7 +39,15 @@ const connectDB = new mongoose.Schema({
         type: Date,
         default: Date.now()
     },
-    Comments: {
+    
+
+}, {timestamps: true});
+
+const commentSchema = new mongoose.Schema({
+        comments:{
+            type: [commentSchema],
+            default: []
+        },
         Username:{
             type: String,
             required: true
@@ -52,10 +60,9 @@ const connectDB = new mongoose.Schema({
             type: String,
             required: true
         }
-    }
-
-}, {timestamps: true});
+})
 
 const User = mongoose.model('User', connectDB);
+const Comment = mongoose.model('Comment', commentSchema);
 
-export default User;
+export {User, Comment};
